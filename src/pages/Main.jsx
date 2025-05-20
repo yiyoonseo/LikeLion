@@ -1,8 +1,11 @@
 import container from "../assets/container";
+import Navbar from "../components/Navbar";
 
 const Main = () => {
+  
   return (
     <div>
+      <Navbar />
       <p className="text-[25.5px] font-bold">Welcome to ShopMall</p>
       <p>Discover our latest products and deals</p>
       <div className="flex justify-row justify-between">
