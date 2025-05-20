@@ -1,6 +1,9 @@
 import container from "../assets/container";
+import Navbar from "../components/Navbar";
 import "./Main.css";
 import Button from "../components/Button";
+
+
 
 const Main = () => {
   const handleClickCart = () => {
@@ -9,6 +12,7 @@ const Main = () => {
 
   return (
     <div className="pt-[32px] pb-[80px] pr-[16px] pl-[16px] mr-[80px] ml-[80px] bg-[##F9FAFB]">
+
       <p className="text-[25.5px] font-bold">Welcome to ShopMall</p>
       <p>Discover our latest products and deals</p>
 
