@@ -17,7 +17,7 @@ const Main = () => {
           <p>Featured Products</p>
           <p className="text-[#4F46E5] col-end-1">View All</p>
         </div>
-        <div className="grid dt:grid-cols-4 gap-[24px] py-[24px] ph:grid-cols-2">
+        <div className="grid grid-cols-4 ph:grid-cols-2 gap-[24px] py-[24px] ">
           {container.map((item) => (
             <div key={item.id} className="icard">
               <img
