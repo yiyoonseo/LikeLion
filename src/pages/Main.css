@@ -11,9 +11,10 @@
   overflow: hidden;
   display: flex;
   width: full;
+
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 
   border-radius: 8px;
   background: #fff;
