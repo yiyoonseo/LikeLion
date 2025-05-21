@@ -11,10 +11,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="ph:hidden dt:flex w-full h-[64px] flex-row fixed top-0 left-0 justify-between items-center shadow-lg">
+      <nav className="ph:hidden dt:flex w-full h-[64px] flex-row fixed top-0 left-0 justify-between items-center shadow-lg bg-white z-50">
         <div
           className="pl-[96px] cursor-pointer font-bold text-[#4F46E5]"
-          onClick={() => nav("/")}
+          onClick={() => {setIsOpen(false); nav("/")}}
         >
           ShopMall
         </div>
@@ -34,10 +34,10 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <nav className="dt:hidden ph:flex w-full h-[64px] flex-row fixed top-0 left-0 justify-between items-center shadow-lg">
+      <nav className="dt:hidden ph:flex w-full h-[64px] flex-row fixed top-0 left-0 justify-between items-center shadow-lg bg-white z-50">
         <div
           className="pl-[16px] cursor-pointer font-bold text-[#4F46E5]"
-          onClick={() => nav("/")}
+          onClick={() => {setIsOpen(false); nav("/")}}
         >
           ShopMall
         </div>
@@ -57,7 +57,11 @@ const Navbar = () => {
         } z-40 shadow-lg`}
       >
         <div className="h-[40px] items-center">
-          <Link to="/signin" className="text-lg text-[#374151] cursor-pointer">
+          <Link 
+            to="/signin" 
+            onClick={()=>setIsOpen(false)}
+            className="text-lg text-[#374151] cursor-pointer"
+          >
             Sign In
           </Link>
         </div>

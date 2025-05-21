@@ -1,12 +1,11 @@
 import "./Main.css";
-import Navbar from "../components/Navbar";
 import PurchaseCard from "../components/PurchaseCard";
 
 const Main = () => {
   return (
     <>
-      <Navbar />
-      <div className="font-Inter pt-[32px] pb-[80px] px-[16px] mt-[64px] dt:mx-[80px] bg-[##F9FAFB] ph:mx-[16px] ph:mb-[0px]">
+      
+      <div className="font-Inter pt-[32px] pb-[80px] px-[16px]  dt:mx-[80px] bg-[##F9FAFB] ph:mx-[16px] ph:mb-[0px]">
         <p className="text-[25.5px] font-bold text-[#1F2937]">
           Welcome to ShopMall
         </p>
