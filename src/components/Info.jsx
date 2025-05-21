@@ -127,7 +127,7 @@ const Info = () => {
                         onClick={goToMain}
                         text="Sign In"
                         variant="signIn"
-                        disabled={!active && !pwValid}
+                        disabled={!active}
                     />
                 </div>
             </div>
