@@ -13,10 +13,10 @@ const Info = () => {
         pw: '',
     });
 
-    const {name, phnum, email, birth, pw} = inputs;
+  const { name, phnum, email, birth, pw } = inputs;
 
-    const onChange = (e) => {
-        const {name, value} = e.target;
+  const onChange = (e) => {
+    const { name, value } = e.target;
 
         const nextInputs = {
             ...inputs,
@@ -125,12 +125,12 @@ const Info = () => {
                 </div>
             </div>
 
-            <div className="h-[24px] flex flex-row justify-center gap-[10px] dt:w-[400px] ph:w-322px]">
-                <p className="text-[#4B5563]">Don't have an account?</p>
-                <p className="text-[#4F46E5] cursor-pointer">Register</p>
-            </div>
-        </main>
-    )
-}
+      <div className="h-[24px] flex flex-row justify-center gap-[10px] dt:w-[400px] ph:w-322px]">
+        <p className="text-[#4B5563]">Don't have an account?</p>
+        <p className="text-[#4F46E5] cursor-pointer">Register</p>
+      </div>
+    </main>
+  );
+};
 
 export default Info;
