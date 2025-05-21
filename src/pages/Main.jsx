@@ -1,5 +1,5 @@
 import container from "../assets/container";
-import Navbar from "../components/Navbar";
+
 import "./Main.css";
 import Button from "../components/Button";
 

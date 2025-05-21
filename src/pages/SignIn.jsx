@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
 import Info from "../components/Info";
 
 const SignIn = () => {
     return (
         <>
-            <Navbar />
-            <div className="flex justify-center mt-[96px]">
+            <div className="flex justify-center mt-[24px]">
                 <Info />
             </div>
             

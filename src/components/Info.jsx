@@ -1,12 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Info = () => {
-    // const [name, setName] = useState("");
-    // const [phnum, setPhnum] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [birth, setBirth] = useState("");
-    // const [pw, setPw] = useState("");
+    const nav = useNavigate();
 
+    const [active, setActive] = useState(false);
     const [inputs, setInputs] = useState({
         name: '',
         phnum: '',
@@ -26,6 +24,21 @@ const Info = () => {
         }
         setInputs(nextInputs);
         // console.log(inputs);
+    };
+
+    const checkActive = () => {
+        return (name != "" && pw != "" && phnum != "" && email != "" && birth != "") 
+            ? setActive(true) : setActive(false);
+    }
+
+    const goToMain = () => {
+        if (active) {
+            alert('회원가입 성공!')
+            nav("/");
+        }
+        else {
+            alert('회원가입에 실패했습니다. 다시 시도해주세요!');
+        }
     }
 
     return(
@@ -42,6 +55,7 @@ const Info = () => {
                         name="name"
                         value={name}
                         onChange={onChange}
+                        onKeyUp={checkActive}
                         className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
                     />
                 </div>
@@ -53,6 +67,7 @@ const Info = () => {
                         name="phnum"
                         value={phnum}
                         onChange={onChange}
+                        onKeyUp={checkActive}
                         className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
                     />
                 </div>
@@ -64,6 +79,7 @@ const Info = () => {
                         name="email"
                         value={email}
                         onChange={onChange}
+                        onKeyUp={checkActive}
                         className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
                     />
                 </div>
@@ -75,6 +91,7 @@ const Info = () => {
                         name="birth"
                         value={birth}
                         onChange={onChange}
+                        onKeyUp={checkActive}
                         className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
                     />
                 </div>
@@ -86,13 +103,25 @@ const Info = () => {
                         name="pw"
                         value={pw}
                         onChange={onChange} 
+                        onKeyUp={checkActive}
                         className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
                     />
                     {/* {(pw.length < 8 || pw.length > 16) && <span className="text-red-500 text-sm">비밀번호 길이 이상</span>} */}
                 </div>
 
-                <div className="border border-blue-500 mt-[16px] h-[40px]">
-                    <button>sign in 버튼</button>
+                <div className="mt-[16px] h-[40px]">
+                    <button 
+                        onClick={goToMain}
+                        disabled={(name === "" 
+                            || pw === ""
+                            || phnum === ""
+                            || email === ""
+                            || birth === "") ? true : false
+                        }
+                        className={`w-full h-[40px] rounded-lg text-white ${active ? 'bg-[#4F46E5]' : 'bg-[#4e46e576]'}`}
+                    >
+                        Sign In
+                    </button>
                 </div>
             </div>
 
