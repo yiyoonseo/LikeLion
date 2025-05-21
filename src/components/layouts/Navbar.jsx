@@ -1,7 +1,7 @@
-import cartImg from "../assets/cart.svg";
-import signinImg from "../assets/signin.svg";
-import hmbImg from "../assets/hmb.svg";
-import exitImg from "../assets/exit.svg";
+import cartImg from "../../assets/cart.svg";
+import signinImg from "../../assets/signin.svg";
+import hmbImg from "../../assets/hmb.svg";
+import exitImg from "../../assets/exit.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 

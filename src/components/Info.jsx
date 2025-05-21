@@ -1,105 +1,129 @@
 import { useState } from "react";
-import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const Info = () => {
-  // const [name, setName] = useState("");
-  // const [phnum, setPhnum] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [birth, setBirth] = useState("");
-  // const [pw, setPw] = useState("");
+    const nav = useNavigate();
 
-  const [inputs, setInputs] = useState({
-    name: "",
-    phnum: "",
-    email: "",
-    birth: "",
-    pw: "",
-  });
+    const [active, setActive] = useState(false);
+    const [inputs, setInputs] = useState({
+        name: '',
+        phnum: '',
+        email: '',
+        birth: '',
+        pw: '',
+    });
 
   const { name, phnum, email, birth, pw } = inputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
 
-    const nextInputs = {
-      ...inputs,
-      [name]: value,
+        const nextInputs = {
+            ...inputs,
+            [name] : value,
+        }
+        setInputs(nextInputs);
+        // console.log(inputs);
     };
-    setInputs(nextInputs);
-    // console.log(inputs);
-  };
 
-  const handleClickIn = () => {
-    alert("회원가입 완료!");
-  };
+    const checkActive = () => {
+        return (name != "" && pw != "" && phnum != "" && email != "" && birth != "") 
+            ? setActive(true) : setActive(false);
+    }
 
-  return (
-    <main className="rounded-lg shadow-lg h-[640px] flex flex-col items-center margin-top dt:w-[448px] ph:w-[370px]">
-      <div className="h-[32px] mx-[24px] mt-[24px] dt:w-[400px] ph:w-[322px]">
-        <h1 className="text-center text-xl font-bold">Sign In</h1>
-      </div>
+    const goToMain = () => {
+        if (active) {
+            alert('회원가입 성공!')
+            nav("/");
+        }
+        else {
+            alert('회원가입에 실패했습니다. 다시 시도해주세요!');
+        }
+    }
 
-      <div className="h-[500px] mt-[20px] flex flex-col dt:w-[400px] ph:w-[322px]">
-        <div className="mb-[8px]">
-          <p className="text-[#374151] text-sm">Full Name</p>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={onChange}
-            className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]"
-          />
-        </div>
+    return(
+        <main className="rounded-lg shadow-lg h-[640px] flex flex-col items-center margin-top dt:w-[448px] ph:w-[370px]">
+            <div className="h-[32px] mx-[24px] mt-[24px] dt:w-[400px] ph:w-[322px]">
+                <h1 className="text-center text-xl font-bold">Sign In</h1>
+            </div>
 
-        <div className="my-[8px]">
-          <p className="text-[#374151] text-sm">Phone Number</p>
-          <input
-            type="text"
-            name="phnum"
-            value={phnum}
-            onChange={onChange}
-            className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]"
-          />
-        </div>
+            <div className="h-[500px] mt-[20px] flex flex-col dt:w-[400px] ph:w-[322px]">
+                <div className="mb-[8px]">
+                    <p className="text-[#374151] text-sm">Full Name</p>
+                    <input 
+                        type="text" 
+                        name="name"
+                        value={name}
+                        onChange={onChange}
+                        onKeyUp={checkActive}
+                        className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
+                    />
+                </div>
 
-        <div className="my-[8px]">
-          <p className="text-[#374151] text-sm">Email Address</p>
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={onChange}
-            className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]"
-          />
-        </div>
+                <div className="my-[8px]">
+                    <p className="text-[#374151] text-sm">Phone Number</p>
+                    <input 
+                        type="text" 
+                        name="phnum"
+                        value={phnum}
+                        onChange={onChange}
+                        onKeyUp={checkActive}
+                        className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
+                    />
+                </div>
 
-        <div className="my-[8px]">
-          <p className="text-[#374151] text-sm">Birthday</p>
-          <input
-            type="date"
-            name="birth"
-            value={birth}
-            onChange={onChange}
-            className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]"
-          />
-        </div>
+                <div className="my-[8px]">
+                    <p className="text-[#374151] text-sm">Email Address</p>
+                    <input 
+                        type="text" 
+                        name="email"
+                        value={email}
+                        onChange={onChange}
+                        onKeyUp={checkActive}
+                        className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
+                    />
+                </div>
 
-        <div className="my-[8px]">
-          <p className="text-[#374151] text-sm">Password</p>
-          <input
-            type="password"
-            name="pw"
-            value={pw}
-            onChange={onChange}
-            className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]"
-          />
-          {/* {(pw.length < 8 || pw.length > 16) && <span className="text-red-500 text-sm">비밀번호 길이 이상</span>} */}
-        </div>
+                <div className="my-[8px]">
+                    <p className="text-[#374151] text-sm">Birthday</p>
+                    <input 
+                        type="date" 
+                        name="birth"
+                        value={birth}
+                        onChange={onChange}
+                        onKeyUp={checkActive}
+                        className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
+                    />
+                </div>
 
-        <div className="border border-transparent mt-[16px] h-[40px] flex justify-center">
-          <Button onClick={handleClickIn} text="Sing In" />
-        </div>
-      </div>
+                <div className="my-[8px]">
+                    <p className="text-[#374151] text-sm">Password</p>
+                    <input 
+                        type="password"
+                        name="pw"
+                        value={pw}
+                        onChange={onChange} 
+                        onKeyUp={checkActive}
+                        className="h-[40px] mt-[9px] my[8px] rounded-md border border-[#D1D5DB] dt:w-[400px] px-[12px] ph:w-[322px]" 
+                    />
+                    {/* {(pw.length < 8 || pw.length > 16) && <span className="text-red-500 text-sm">비밀번호 길이 이상</span>} */}
+                </div>
+
+                <div className="mt-[16px] h-[40px]">
+                    <button 
+                        onClick={goToMain}
+                        disabled={(name === "" 
+                            || pw === ""
+                            || phnum === ""
+                            || email === ""
+                            || birth === "") ? true : false
+                        }
+                        className={`w-full h-[40px] rounded-lg text-white ${active ? 'bg-[#4F46E5]' : 'bg-[#4e46e576]'}`}
+                    >
+                        Sign In
+                    </button>
+                </div>
+            </div>
 
       <div className="h-[24px] flex flex-row justify-center gap-[10px] dt:w-[400px] ph:w-322px]">
         <p className="text-[#4B5563]">Don't have an account?</p>
