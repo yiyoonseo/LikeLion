@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import container from "../assets/container";
+import Modal from "../components/Modal";
 
 const ProductsDetail = () => {
   const { id } = useParams();
@@ -8,6 +9,7 @@ const ProductsDetail = () => {
 
   const [productItem, setProductItem] = useState();
   const [count, setCount] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const findItem = container.find(
@@ -26,6 +28,21 @@ const ProductsDetail = () => {
   if (!productItem) return <div>로딩중 ...</div>;
 
   const numberPrice = Number(productItem.price.replace(/[^0-9.]/g, ""));
+
+  const handleInfo = () => {
+    nav("/shoppingCart", {
+      state: {
+        name: productItem.name,
+        category: productItem.category,
+        price: productItem.price,
+        quantity: count,
+      }
+    })
+  }
+
+  const handleModal = () => {
+    setIsOpen(true);
+  }
 
   return (
     <div className="flex justify-center items-center">
@@ -82,12 +99,23 @@ const ProductsDetail = () => {
 
           <div className="flex justify-between mb-[32.3px]">
             <p className="text-[#374151] text-[13.6px]">총 상품 금액</p>
-            <p className="text-[17px] font-bold">${count * numberPrice}</p>
+            <p className="text-[17px] font-bold">
+              ${(count * numberPrice).toFixed(2)}
+            </p>
           </div>
 
-          <button className="w-[283px] h-[48px] mx-auto flex justify-center items-center content-center px-[114px] py-[12px] rounded-[6px] bg-[#6B21A8] text-[#FFFFFF] text-[13.6px]">
+          <button 
+            className="w-[283px] h-[48px] mx-auto flex justify-center items-center content-center px-[114px] py-[12px] rounded-[6px] bg-[#6B21A8] text-[#FFFFFF] text-[13.6px]"
+            onClick={handleModal}
+          >
             장바구니
           </button>
+
+          <Modal 
+            isOpen={isOpen} 
+            setIsOpen={setIsOpen} 
+            onConfirm={handleInfo}
+          />
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ const cartMockData = {
       "totalPrice": 50000
     }
   ],
-  "cartTotalItems": 0,
+  "cartTotalItems": 3,
   "cartTotalPrice": 70000
 };
 
