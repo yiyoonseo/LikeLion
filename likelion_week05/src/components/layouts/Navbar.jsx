@@ -37,7 +37,7 @@ const Navbar = () => {
             <div className="items-center font-Inter text-sm">Sign-In</div>
           </div>
 
-          <div className="cursor-pointer">
+          <div className="cursor-pointer" onClick={() => nav("/shoppingCart")}>
             <img src={cartImg} alt="" />
           </div>
         </div>
@@ -79,7 +79,11 @@ const Navbar = () => {
         </div>
 
         <div className="h-[40px] items-center">
-          <Link className="text-lg text-[#374151] cursor-pointer">
+          <Link 
+            to="/shoppingCart"
+            onClick={() => setIsOpen(false)}
+            className="text-lg text-[#374151] cursor-pointer"
+          >
             Shopping Cart
           </Link>
         </div>
