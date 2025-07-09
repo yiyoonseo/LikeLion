@@ -1,15 +1,23 @@
 import container from "../assets/container";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const PurchaseCard = () => {
   const handleClickCart = () => {
     alert("장바구니에 추가되었습니다!");
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="grid dt:grid-cols-4 ph:grid-cols-2 ph:gap-[24px] dt:gap-[16px] py-[16px] ">
       {container.map((item) => (
-        <div key={item.id} className="icard">
+        <div
+          key={item.id}
+          className="icard"
+          onClick={() => navigate(`/products/${item.id}`)}
+        >
           <img
             src="/merchandise.png"
             alt={item.name}
