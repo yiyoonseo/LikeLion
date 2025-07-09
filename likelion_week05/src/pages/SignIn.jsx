@@ -1,5 +1,5 @@
-// import Info from "../components/Info";
 import SocialLogin from "../components/SocialLogin";
+
 
 const SignIn = () => {
     return (
