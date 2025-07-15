@@ -1,6 +1,6 @@
 import instance from "./instance";
 
-export const getProducts = async () => {
+export const fetchAllProducts = async () => {
   const res = await instance.get("/products");
   return res.data;
 };
