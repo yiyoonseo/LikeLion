@@ -1,27 +1,24 @@
-import container from "../assets/container";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchAllProducts } from "../apis/products";
+//import { fetchAllProducts } from "../apis/products";
 
-const PurchaseCard = () => {
+const PurchaseCard = ({ products }) => {
   const navigate = useNavigate();
 
   const handleClickCart = () => {
     alert("장바구니에 추가되었습니다!");
-    setIsClicked(true);
   };
 
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery({ queryKey: ["products"], queryFn: fetchAllProducts });
+  // const {
+  //   data: products,
+  //   isLoading,
+  //   error,
+  // } = useQuery({ queryKey: ["products"], queryFn: fetchAllProducts });
 
-  if (isLoading) return <div>로딩중...</div>;
-  if (error) return <div>ERRROR</div>;
+  // if (isLoading) return <div>로딩중...</div>;
+  // if (error) return <div>ERRROR</div>;
 
   return (
     <div className="grid dt:grid-cols-4 ph:grid-cols-2 ph:gap-[24px] dt:gap-[16px] py-[16px] ">
