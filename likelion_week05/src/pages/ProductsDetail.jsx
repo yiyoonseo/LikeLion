@@ -41,7 +41,7 @@ const ProductsDetail = () => {
 
   if (!productItem) return <div>로딩중 ...</div>;
 
-  const numberPrice = Number(String(productItem.price).replace(/[^0-9.]/g, ""));
+  //const numberPrice = Number(String(productItem.price).replace(/[^0-9.]/g, ""));
 
   const handleInfo = () => {
     nav("/shoppingCart", {
@@ -114,7 +114,7 @@ const ProductsDetail = () => {
           <div className="flex justify-between mb-[32.3px]">
             <p className="text-[#374151] text-[13.6px]">총 상품 금액</p>
             <p className="text-[17px] font-bold">
-              ${(count * numberPrice).toFixed(2)}
+              \{(count * productItem.price).toFixed(2)}
             </p>
           </div>
 

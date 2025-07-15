@@ -1,20 +1,17 @@
 import container from "../assets/container";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import {
-  fetchAllProducts,
-  getProductsById,
-  getProductsByName,
-} from "../apis/products";
+import { fetchAllProducts } from "../apis/products";
 
 const PurchaseCard = () => {
   const navigate = useNavigate();
 
   const handleClickCart = () => {
     alert("장바구니에 추가되었습니다!");
+    setIsClicked(true);
   };
 
   const {
@@ -48,7 +45,10 @@ const PurchaseCard = () => {
               <p className="font-bold text-[15px] ph:mr-[10px]">{item.price}</p>
               <div className="text-[11px] dt:w-[97px] dt:h-[28px] ph:w-[80px] ph:h-[48px]">
                 <Button
-                  onClick={handleClickCart}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClickCart();
+                  }}
                   text="Add to Cart"
                   className={`dt:px-[12px] dt:py ph:px-[18px] ph:py-[4px] whitespace-normal`}
                 />
