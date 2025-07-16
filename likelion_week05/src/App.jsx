@@ -4,8 +4,20 @@ import ShoppingCart from "./pages/ShoppingCart";
 import Layout from "./components/layouts/Layout";
 import ProductsDetail from "./pages/ProductsDetail";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect(() => {
+    if(!localStorage.getItem("cartId")) {
+      localStorage.setItem("cartId", "1");
+    }
+
+    if (!localStorage.getItem("userId")) {
+      localStorage.setItem("userId", "1");
+    }
+  },[]);
+
   return (
     <BrowserRouter>
       <Routes>
