@@ -2,32 +2,46 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import container from "../assets/container";
 import Modal from "../components/Modal";
+import { useQuery } from "@tanstack/react-query";
+import { getProductsById } from "../apis/products";
 
 const ProductsDetail = () => {
   const { id } = useParams();
   const nav = useNavigate();
 
-  const [productItem, setProductItem] = useState();
+  //const [productItem, setProductItem] = useState();
   const [count, setCount] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const findItem = container.find(
-      (container) => String(container.id) === String(id)
-    );
-    console.log(findItem);
+  const {
+    data: productItem,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getProductsById(id),
+  });
 
-    if (!findItem) {
-      window.alert("존재하지 않는 상품입니다!");
-      nav("/", { replace: true });
-    }
+  if (isLoading) return <div>로딩 중...</div>;
+  if (error || !productItem) return <div>ERROR</div>;
 
-    setProductItem(findItem);
-  }, [id, nav]);
+  // useEffect(() => {
+  //   const findItem = products.find(
+  //     (container) => String(container.id) === String(id)
+  //   );
+  //   console.log(findItem);
+
+  //   if (!findItem) {
+  //     window.alert("존재하지 않는 상품입니다!");
+  //     nav("/", { replace: true });
+  //   }
+
+  //   setProductItem(findItem);
+  // }, [id, nav]);
 
   if (!productItem) return <div>로딩중 ...</div>;
 
-  const numberPrice = Number(productItem.price.replace(/[^0-9.]/g, ""));
+  //const numberPrice = Number(String(productItem.price).replace(/[^0-9.]/g, ""));
 
   const handleInfo = () => {
     nav("/shoppingCart", {
@@ -36,13 +50,13 @@ const ProductsDetail = () => {
         category: productItem.category,
         price: productItem.price,
         quantity: count,
-      }
-    })
-  }
+      },
+    });
+  };
 
   const handleModal = () => {
     setIsOpen(true);
-  }
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -100,22 +114,18 @@ const ProductsDetail = () => {
           <div className="flex justify-between mb-[32.3px]">
             <p className="text-[#374151] text-[13.6px]">총 상품 금액</p>
             <p className="text-[17px] font-bold">
-              ${(count * numberPrice).toFixed(2)}
+              \{(count * productItem.price).toFixed(2)}
             </p>
           </div>
 
-          <button 
+          <button
             className="w-[283px] h-[48px] mx-auto flex justify-center items-center content-center px-[114px] py-[12px] rounded-[6px] bg-[#6B21A8] text-[#FFFFFF] text-[13.6px]"
             onClick={handleModal}
           >
             장바구니
           </button>
 
-          <Modal 
-            isOpen={isOpen} 
-            setIsOpen={setIsOpen} 
-            onConfirm={handleInfo}
-          />
+          <Modal isOpen={isOpen} setIsOpen={setIsOpen} onConfirm={handleInfo} />
         </div>
       </div>
     </div>
